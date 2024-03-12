@@ -26,7 +26,7 @@ export default async function Home() {
 					</h1>
 
 					<Card className='mt-10'>
-						<CardContent className='py-20 px-16'>
+						<CardContent className='py-20 px-16 relative ' >
 							<MoneyExchangeForm currencies={currencies || []} />
 						</CardContent>
 					</Card>

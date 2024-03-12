@@ -15,16 +15,15 @@ export const listquotes = async () => {
 	try {
 		const response = await fetch(url, options);
 		const result = await response.json();
-
-		console.log('ACTION: listquotes - RESPONSE:', result);
 		return result;
 	} catch (error) {
 		console.error('ACTION: listquotes - ERROR:', error);
 	}
 };
 
-export const exchange = async (from: string, to: string, q: number) => {
-	const url = `${baseUrl}/exchange?from=${from}&to=${to}&q=${q}`;
+export const exchange = async (from: string, to: string) => {
+	const url = `${baseUrl}/exchange?from=${from}&to=${to}`;
+
 	try {
 		const response = await fetch(url, options);
 		const result = await response.json();
