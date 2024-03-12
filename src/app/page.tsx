@@ -1,8 +1,11 @@
+import { listquotes } from '@/actions/currencyExhange';
 import { Card, CardContent } from '@/components/ui/card';
 import { MoneyExchangeForm } from '@/features/MoneyExchange/MoneyExchangeForm';
 import Image from 'next/image';
 
 export default async function Home() {
+	const currencies = await listquotes();
+
 	return (
 		<main className='relative min-h-[100dvh] w-full bg-center bg-cover '>
 			<div className='absolute inset-0'>
@@ -23,8 +26,8 @@ export default async function Home() {
 					</h1>
 
 					<Card className='mt-10'>
-						<CardContent className='py-20'>
-							<MoneyExchangeForm currencies={[]} />
+						<CardContent className='py-20 px-16'>
+							<MoneyExchangeForm currencies={currencies || []} />
 						</CardContent>
 					</Card>
 				</div>
