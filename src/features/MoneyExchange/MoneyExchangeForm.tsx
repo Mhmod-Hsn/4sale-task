@@ -30,7 +30,13 @@ const formSchema = z.object({
 	to: z.string(),
 });
 
-export const MoneyExchangeForm = ({ currencies }: { currencies: string[] }) => {
+export const MoneyExchangeForm = ({
+	currencies,
+	debounceTimeout = 2000,
+}: {
+	currencies: string[];
+	debounceTimeout?: number;
+}) => {
 	const [message, setMessage] = useState<string | null>(null);
 	const [isLoading, setIsLoading] = useState(false);
 	const [timeoutId, setTimeoutId] = useState<ReturnType<
@@ -96,11 +102,11 @@ export const MoneyExchangeForm = ({ currencies }: { currencies: string[] }) => {
 			// to debounce inputs a little
 			const id = setTimeout(() => {
 				handleSubmit(values);
-			}, 1000);
+			}, debounceTimeout);
 
 			setTimeoutId(id);
 		},
-		[handleSubmit, timeoutId]
+		[debounceTimeout, handleSubmit, timeoutId]
 	);
 
 	// trigger onChange
