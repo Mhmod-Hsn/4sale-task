@@ -41,11 +41,13 @@ export const MoneyExchangeForm = ({ currencies }: { currencies: string[] }) => {
 		mode: 'onChange',
 		resolver: zodResolver(formSchema),
 		defaultValues: {
-			amount: '',
+			amount: '1.0',
 			from: '',
 			to: '',
 		},
 	});
+	const showResetButton =
+		form.getValues('from') && form.getValues('to') && form.getValues('amount');
 
 	const prepareResponse = (
 		amount: string,
@@ -141,7 +143,7 @@ export const MoneyExchangeForm = ({ currencies }: { currencies: string[] }) => {
 									<Select onValueChange={field.onChange} value={field.value}>
 										<FormControl>
 											<SelectTrigger>
-												<SelectValue placeholder='Select a currency' />
+												<SelectValue placeholder='Currency' />
 											</SelectTrigger>
 										</FormControl>
 										<SelectContent>
@@ -181,7 +183,7 @@ export const MoneyExchangeForm = ({ currencies }: { currencies: string[] }) => {
 									<Select onValueChange={field.onChange} value={field.value}>
 										<FormControl>
 											<SelectTrigger>
-												<SelectValue placeholder='Select a currency' />
+												<SelectValue placeholder='Currency' />
 											</SelectTrigger>
 										</FormControl>
 										<SelectContent>
@@ -201,16 +203,18 @@ export const MoneyExchangeForm = ({ currencies }: { currencies: string[] }) => {
 							)}
 						/>
 					</div>
-					<Button
-						type='button'
-						onClick={() => {
-							form.reset();
-							setMessage(null);
-						}}
-						className='rounded-full px-8'
-					>
-						Reset
-					</Button>
+					{showResetButton && (
+						<Button
+							type='button'
+							onClick={() => {
+								form.reset();
+								setMessage(null);
+							}}
+							className='rounded-full px-8'
+						>
+							Reset
+						</Button>
+					)}
 					{<p>{message}</p>}
 				</form>
 			</Form>
