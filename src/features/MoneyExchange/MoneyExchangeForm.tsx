@@ -168,7 +168,7 @@ export const MoneyExchangeForm = ({ currencies }: { currencies: string[] }) => {
 							className='rounded-full mt-8 flex-none mx-auto'
 							onClick={swapCurrencies}
 						>
-							<span className='opacity-35'>
+							<span className='text-primary'>
 								<SwapIcon />
 							</span>
 						</Button>

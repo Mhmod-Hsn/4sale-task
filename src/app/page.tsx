@@ -1,4 +1,5 @@
 import { listquotes } from '@/actions/currencyExhange';
+import { ThemeToggle } from '@/components/ThemeToggle';
 import { Card, CardContent } from '@/components/ui/card';
 import { MoneyExchangeForm } from '@/features/MoneyExchange/MoneyExchangeForm';
 import Image from 'next/image';
@@ -26,12 +27,16 @@ export default async function Home() {
 					</h1>
 
 					<Card className='mt-10'>
-						<CardContent className='py-20 px-16 relative ' >
+						<CardContent className='py-20 px-16 relative '>
 							<MoneyExchangeForm currencies={currencies || []} />
 						</CardContent>
 					</Card>
 				</div>
 			</div>
+
+			<span className='absolute bottom-4 right-4 text-primary'>
+				<ThemeToggle />
+			</span>
 		</main>
 	);
 }
