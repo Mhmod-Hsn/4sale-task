@@ -132,6 +132,7 @@ export const MoneyExchangeForm = ({
 											disabled={isLoading}
 											type='number'
 											placeholder='0.0'
+											data-testid='amount'
 											{...field}
 										/>
 									</FormControl>
@@ -146,7 +147,12 @@ export const MoneyExchangeForm = ({
 							render={({ field }) => (
 								<FormItem className='flex-1 '>
 									<FormLabel>From</FormLabel>
-									<Select onValueChange={field.onChange} value={field.value}>
+									<Select
+										onValueChange={field.onChange}
+										value={field.value}
+										data-testid='from'
+										name='from'
+									>
 										<FormControl>
 											<SelectTrigger>
 												<SelectValue placeholder='Currency' />
@@ -175,6 +181,7 @@ export const MoneyExchangeForm = ({
 							size='icon'
 							className='rounded-full mt-8 flex-none mx-auto'
 							onClick={swapCurrencies}
+							data-testid='swap'
 						>
 							<span className='text-primary'>
 								<SwapIcon />
@@ -186,7 +193,11 @@ export const MoneyExchangeForm = ({
 							render={({ field }) => (
 								<FormItem className='flex-1 '>
 									<FormLabel>To</FormLabel>
-									<Select onValueChange={field.onChange} value={field.value}>
+									<Select
+										onValueChange={field.onChange}
+										value={field.value}
+										data-testid='to'
+									>
 										<FormControl>
 											<SelectTrigger>
 												<SelectValue placeholder='Currency' />
@@ -217,11 +228,12 @@ export const MoneyExchangeForm = ({
 								setMessage(null);
 							}}
 							className='rounded-full px-8'
+							data-testid='reset'
 						>
 							Reset
 						</Button>
 					)}
-					{<p>{message}</p>}
+					{<p data-testid='message'>{message}</p>}
 				</form>
 			</Form>
 		</>
